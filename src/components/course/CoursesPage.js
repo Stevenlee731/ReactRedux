@@ -5,9 +5,23 @@ class CoursesPage extends Component {
     super(props, context)
 
     this.state = {
-      course: { title: null }
+      course: { title: "" }
     }
+
+    this.onTitleChange = this.onTitleChange.bind(this)
+    this.onClickSave = this.onClickSave.bind(this)
   }
+
+  onTitleChange(event) {
+    const course = this.state.course
+    course.title = event.target.value
+    this.setState({course})
+  }
+
+  onClickSave() {
+    alert(`Saving ${this.state.course.title}`)
+  }
+
   render() {
     return (
       <div>
@@ -17,6 +31,10 @@ class CoursesPage extends Component {
           type="text"
           onChange={this.onTitleChange}
           value={this.state.course.title} />
+        <input
+          type="submit"
+          value="Save"
+          onClick={this.onClickSave} />
       </div>
     )
   }
